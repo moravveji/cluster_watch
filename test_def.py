@@ -41,6 +41,18 @@ def test_def_node():
   return 0
 
 #--------------------------------------
+def check_gpu_status():
+  gnode = df.node(hostname='r24g35')
+  gpus  = gnode.gpus
+  try:
+    assert gpus == len(gnode.gpu_list)
+  except AssertionError:
+    print('Error: check_gpu_status failed')
+    sys.exit(1)
+
+  for i, gpu in enumerate(gnode.gpu_list):
+    print(f"{gpu.gpu_id}: {gpu.gpu_utilization}")
+
 #--------------------------------------
 #--------------------------------------
 #--------------------------------------
@@ -51,6 +63,8 @@ def main():
   test_def_cpu()
 
   test_def_node()
+
+  check_gpu_status()
 
 #  genius = gpi.nodes(cluster='genius')
 
