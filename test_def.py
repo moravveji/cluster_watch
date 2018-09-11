@@ -50,8 +50,17 @@ def check_gpu_status():
     print('Error: check_gpu_status failed')
     sys.exit(1)
 
+  print()
+  print('{0:<16s} {1:<6s} {1:<6s} {2:<6s}'.format('Device ID', 'Use', 'Mem', 'Tempr'))
+  print('{0:<16s} {1:<6s} {1:<6s} {2:<6s}'.format(' ', '[%]', '[%]', 'C'))
   for i, gpu in enumerate(gnode.gpu_list):
-    print(f"{gpu.gpu_id}: {gpu.gpu_utilization}")
+    gid   = gpu.gpu_id
+    gutil = gpu.gpu_utilization
+    gmem  = gpu.gpu_memory_utilization
+    gtemp = gpu.gpu_temperature
+
+    print(f"{gid:<16s} {gutil:<6d} {gmem:<6d} {gtemp:<6d}")
+  print()
 
 #--------------------------------------
 #--------------------------------------
