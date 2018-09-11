@@ -37,7 +37,7 @@ class gpu:
     self.gpu_pci_location_id = None
     self.gpu_product_name = None
     self.gpu_memory_total = None
-    self._gpu_memory_used = 0
+    self.gpu_memory_used = None
     self.gpu_mode = None
     self.gpu_state = None
     self._gpu_utilization = 0
@@ -52,11 +52,6 @@ class gpu:
   def gpu_pci_device_id(self): return self._gpu_pci_device_id
   @gpu_pci_device_id.setter
   def gpu_pci_device_id(self, val): self._gpu_pci_device_id = int(val)
- 
-  @property
-  def gpu_memory_used(self): return self._gpu_memory_used
-  @gpu_memory_used.setter
-  def gpu_memory_used(self, val): self._gpu_memory_used = int(val)
  
   @property
   def gpu_utilization(self): return self._gpu_utilization
