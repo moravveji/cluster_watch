@@ -36,8 +36,8 @@ class gpu:
     self._gpu_pci_device_id = 0
     self.gpu_pci_location_id = None
     self.gpu_product_name = None
-    self.gpu_memory_total = None
-    self.gpu_memory_used = None
+    self._gpu_memory_total = 0
+    self._gpu_memory_used = 0
     self.gpu_mode = None
     self.gpu_state = None
     self._gpu_utilization = 0
@@ -45,18 +45,28 @@ class gpu:
     self.gpu_ecc_mode = None
     self._gpu_single_bit_ecc_errors = 0
     self._gpu_double_bit_ecc_errors = 0
-    self.gpu_temperature = None
+    self._gpu_temperature = 0
 
   #------------------------------------
   @property
   def gpu_pci_device_id(self): return self._gpu_pci_device_id
   @gpu_pci_device_id.setter
   def gpu_pci_device_id(self, val): self._gpu_pci_device_id = int(val)
- 
+
+  @property
+  def gpu_memory_total(self): return self._gpu_memory_total
+  @gpu_memory_total.setter
+  def gpu_memory_total(self, val): self._gpu_memory_total = int(val.split()[0])
+
+  @property
+  def gpu_memory_used(self): return self._gpu_memory_used
+  @gpu_memory_used.setter
+  def gpu_memory_used(self, val): self._gpu_memory_used = int(val.split()[0])
+
   @property
   def gpu_utilization(self): return self._gpu_utilization
   @gpu_utilization.setter
-  def gpu_utilization(self, val): self._gpu_utilization = int(val)
+  def gpu_utilization(self, val): self._gpu_utilization = int(val.split('%')[0])
 
   @property 
   def gpu_memory_utilization(self): return self._gpu_memory_utilization
@@ -72,6 +82,11 @@ class gpu:
   def gpu_double_bit_ecc_errors(self): return self._gpu_double_bit_ecc_errors
   @gpu_double_bit_ecc_errors.setter
   def gpu_double_bit_ecc_errors(self, val): self._gpu_double_bit_ecc_errors = int(val)
+
+  @property
+  def gpu_temperature(self): return self._gpu_temperature
+  @gpu_temperature.setter
+  def gpu_temperature(self, val): self._gpu_temperature = int(val.split()[0])
 
   #------------------------------------
   def set(self, attr, val):
