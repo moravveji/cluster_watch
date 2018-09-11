@@ -41,7 +41,7 @@ class node:
     """
     self.hostname = hostname
     
-    # pbsnodes
+    # pbsnodes message captured from ther STDOUT
     self.pbsnodes = None
     
     # Default attributes from "pbsnodes" output
@@ -150,7 +150,7 @@ class node:
     try: 
       setattr(self, attr, val)
     except AttributeError:
-      logging.error(f"Error: set: gpu class does not have this attribute: {attr}")
+      logging.error(f"Error: set: node class does not have this attribute: {attr}")
       sys.exit(1)
 
   #------------------------------------
@@ -161,7 +161,7 @@ class node:
     try:
       return self.__getattribute__(attr)
     except AttributeError: 
-      logger.error(r"Error: def_gpu: get: gpu class does not have this attribute {attr}")
+      logger.error(f"Error: get: node class does not have this attribute {attr}")
       sys.exit(1)
 
   #------------------------------------
@@ -224,16 +224,36 @@ class node:
     class gpu
     """
     if self.gpu_status is None: return # non-GPU nodes do not have this entry
+    try:
+      assert len(self.gpu_list) == 0
+    except AssertionError:
+      logger.error(f"Error: parse_gpu_status: self.gpu_list is not empty!")
+      sys.exit(1)
     status = self.gpu_status
-    items  = status.split(',')
-    for item in items:
-      if '=' not in item: continue
-      attr, val = item.split(sep='=', maxsplit=1)
-      try:
-        self.set(attr, val)
-      except:
-        print(f'Error: parse_gpu_status: failed to set attribute {attr}')
-        sys.exit(1)
+
+    dev_index = list()  # collects device ids, e.g. 0, 1, 2, 3, ...
+    dev_list  = list()  # collects instances of the gpu() class
+    list_messages = status.split(',')
+
+    for i, msg in enumerate(list_messages):
+      which_dev, info = msg.split(sep='=', maxsplit=1)
+      dev_id = int(which_dev[4])
+      dev_index.append(dev_id)
+      items  = info.split(';')
+
+      this = gpu()
+
+      for k, item in enumerate(items):
+        key, val = item.split('=')
+        this.set(key, val)
+
+      dev_list.append(this)
+
+    # invert the dev_list, because originally it is from the last device to the first
+    dev_list = dev_list[::-1]
+
+    # set the gpu_list attribute
+    self.set('gpu_list', dev_list.copy())
 
   #------------------------------------
   #------------------------------------

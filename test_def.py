@@ -29,7 +29,7 @@ def test_def_cpu():
     logger.error('Error: test_def_cpu: failed to set an integer/float attribute')
     sys.exit(1)
 
-  return 0
+  return 0 # some comment
 
 #--------------------------------------
 def test_def_node(): 

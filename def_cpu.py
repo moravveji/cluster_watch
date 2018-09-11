@@ -13,7 +13,7 @@ Remarks: + All default string attributes are set to None
          + The int and float attribute names begin with "_" and they
            have dedicated getter methods to carry out the type conversion
 """
-import sys, os
+import sys
 import logging
 
 #--------------------------------------
@@ -69,7 +69,7 @@ class cpu:
     try: 
       setattr(self, attr, val)
     except AttributeError:
-      logging.error(f"Error: set: gpu class does not have this attribute: {attr}")
+      logging.error(f"Error: set: cpu class does not have this attribute: {attr}")
       sys.exit(1)
 
   #------------------------------------
@@ -80,7 +80,7 @@ class cpu:
     try:
       return self.__getattribute__(attr)
     except AttributeError: 
-      logger.error(r"Error: def_gpu: get: gpu class does not have this attribute {attr}")
+      logger.error(r"Error: get: cpu class does not have this attribute {attr}")
       sys.exit(1)
 
   #------------------------------------

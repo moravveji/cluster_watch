@@ -13,7 +13,7 @@ Remarks: + All default string attributes are set to None
          + The int and float attribute names begin with "_" and they
            have dedicated getter methods to carry out the type conversion
 """
-import sys, os
+import sys
 import logging
 
 #--------------------------------------
@@ -101,4 +101,3 @@ class gpu:
       sys.exit(1)
 
   #------------------------------------
-
