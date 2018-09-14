@@ -42,7 +42,7 @@ def test_def_node():
 
 #--------------------------------------
 def check_gpu_status():
-  gnode = df.node(hostname='r24g35')
+  gnode = df.node(hostname='r23g34')
   gpus  = gnode.gpus
   try:
     assert gpus == len(gnode.gpu_list)
@@ -51,6 +51,7 @@ def check_gpu_status():
     sys.exit(1)
 
   print()
+  print(f"Jobs on {gnode.hostname}: {gnode.jobs}")
   print('{0:<16s} {1:<6s} {1:<6s} {2:<6s}'.format('Device ID', 'Use', 'Mem', 'Tempr'))
   print('{0:<16s} {1:<6s} {1:<6s} {2:<6s}'.format(' ', '[%]', '[%]', 'C'))
   for i, gpu in enumerate(gnode.gpu_list):
