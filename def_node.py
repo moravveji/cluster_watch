@@ -234,6 +234,8 @@ class node:
     dev_index = list()  # collects device ids, e.g. 0, 1, 2, 3, ...
     dev_list  = list()  # collects instances of the gpu() class
     junk, messages = status.split(sep='=', maxsplit=1)
+    print(junk)
+    print(messages, len(messages), type(messages))
     list_messages  = messages.split(',')
     print(list_messages)
     sys.exit(1)
