@@ -230,6 +230,7 @@ class node:
       logger.error(f"Error: parse_gpu_status: self.gpu_list is not empty!")
       sys.exit(1)
     status = self.gpu_status
+    print('count = {0}'.format(status.count(',')))
 
     dev_index = list()  # collects device ids, e.g. 0, 1, 2, 3, ...
     dev_list  = list()  # collects instances of the gpu() class
