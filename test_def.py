@@ -52,8 +52,8 @@ def check_gpu_status():
 
   print()
   print(f"Jobs on {gnode.hostname}: {gnode.jobs}")
-  print('{0:<16s} {1:<6s} {1:<6s} {2:<6s}'.format('Device ID', 'Use', 'Mem', 'Tempr'))
-  print('{0:<16s} {1:<6s} {1:<6s} {2:<6s}'.format(' ', '[%]', '[%]', 'C'))
+  print('{0:<16s} {1:<6s} {2:<6s} {3:<6s}'.format('Device ID', 'Use', 'Mem', 'Tempr'))
+  print('{0:<16s} {1:<6s} {2:<6s} {3:<6s}'.format(' ', '[%]', '[%]', 'C'))
   for i, gpu in enumerate(gnode.gpu_list):
     gid   = gpu.gpu_id
     gutil = gpu.gpu_utilization
