@@ -71,7 +71,7 @@ class gpu:
   @property 
   def gpu_memory_utilization(self): return self._gpu_memory_utilization
   @gpu_memory_utilization.setter
-  def gpu_memory_utilization(self, val): self._gpu_memory_utilization = int(val) 
+  def gpu_memory_utilization(self, val): self._gpu_memory_utilization = int(val.split('%')[0])
 
   @property
   def gpu_single_bit_ecc_errors(self): return self._gpu_single_bit_ecc_errors
