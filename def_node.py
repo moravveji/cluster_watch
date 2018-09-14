@@ -235,10 +235,10 @@ class node:
     dev_list  = list()  # collects instances of the gpu() class
     list_messages = status.split(sep=',')
     gpu_messages  = list_messages[:4]
+    timestamp = list_messages[-1].split('=')
 
     for i, msg in enumerate(gpu_messages):
       which_dev, info = msg.split(sep='=', maxsplit=1)
-      print(which_dev)
       dev_id = int(which_dev[4])
       dev_index.append(dev_id)
       items  = info.split(';')

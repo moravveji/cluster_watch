@@ -34,7 +34,7 @@ def test_def_cpu():
 #--------------------------------------
 def test_def_node(): 
   gnode = df.node(hostname='r23g35')
-  print(f"{gnode.hostname} has {gnode.ngpu} GPUs onboard")
+  print(f"{gnode.hostname} has {gnode.gpus} GPUs onboard")
   cnode = df.node(hostname='r22i13n01')
   print(f"{cnode.hostname} has {cnode.np} processoers on chip")
 
