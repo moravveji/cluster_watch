@@ -235,6 +235,8 @@ class node:
     dev_list  = list()  # collects instances of the gpu() class
     junk, messages = status.split(sep='=', maxsplit=1)
     list_messages  = messages.split(',')
+    print(list_messages)
+    sys.exit(1)
 
     for i, msg in enumerate(list_messages):
       which_dev, info = msg.split(sep='=', maxsplit=1)
